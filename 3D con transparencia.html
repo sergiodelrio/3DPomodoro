@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="3Dpomodoroicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.453/build/spline-viewer.js"></script>
+    <style>
+        /* Resetear estilos del explorador */
+        body, h1, h2, h3, ul, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Color de Fondo */
+        body {
+            background: #333;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Style del Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow: auto;
+        }
+
+        .navbar ul {
+            padding: 14px;
+            list-style-type: none;
+            margin-left: auto;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            display: inline-block;
+        }
+
+        .viewer-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* Estilo del Toast */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 50px 20px;
+            border-radius: 4px;
+            font-size: 18px;
+            text-align: center;  
+            display: none;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .toast.visible {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+    <title>Pomodoro 3D</title>
+</head>
+<body>
+    <!-- Toasts -->
+    <div id="toast" class="toast">Notification</div>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="javascript:refreshPage();">Restart</a></li>
+            <li><a href="javascript:showToast('Pomodoro Technique is a time management method that breaks work into short, focused intervals followed by short breaks, enhancing productivity by promoting sustained concentration and reducing burnout.');">About</a></li>
+            <li><a href="javascript:showToast('send me an email sergio@delrio.ai ');">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="viewer-container">
+        <spline-viewer hint url="https://prod.spline.design/6fH0NA76ONVv04Hc/scene.splinecode"></spline-viewer>
+    </div>
+
+    <script>
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.classList.add('visible');
+            setTimeout(() => toast.classList.remove('visible'), 9000); // Esconder el Toast despues de 3 segundos
+        }
+
+        function refreshPage() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>
